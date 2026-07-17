@@ -1,0 +1,70 @@
+#aileak-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+#aileak-box {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 24px;
+  width: 380px;
+  max-width: 90vw;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+#aileak-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #b91c1c;
+  margin-bottom: 12px;
+}
+
+#aileak-list {
+  margin: 0 0 12px 0;
+  padding-left: 20px;
+  font-size: 14px;
+  color: #1f2937;
+}
+
+#aileak-list li {
+  margin-bottom: 4px;
+}
+
+#aileak-note {
+  font-size: 13px;
+  color: #4b5563;
+  margin-bottom: 20px;
+  line-height: 1.4;
+}
+
+#aileak-btn-row {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+#aileak-edit-btn,
+#aileak-send-btn {
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  cursor: pointer;
+  border: none;
+}
+
+#aileak-edit-btn {
+  background: #111827;
+  color: white;
+}
+
+#aileak-send-btn {
+  background: #f3f4f6;
+  color: #111827;
+  border: 1px solid #d1d5db;
+}

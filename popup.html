@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>AEGIS</title>
+  <style>
+    body {
+      width: 300px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      padding: 16px;
+      color: #111827;
+    }
+    h1 {
+      font-size: 15px;
+      margin: 0 0 12px 0;
+    }
+    .stat-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      margin-bottom: 6px;
+      padding: 6px 0;
+      border-bottom: 1px solid #f3f4f6;
+    }
+    .stat-label {
+      color: #4b5563;
+    }
+    .stat-value {
+      font-weight: 600;
+    }
+    #breakdown {
+      margin-top: 14px;
+    }
+    #breakdown > strong {
+      display: block;
+      margin-bottom: 6px;
+    }
+    .bar-row {
+      margin-bottom: 8px;
+    }
+    .bar-label {
+      font-size: 11px;
+      color: #374151;
+      margin-bottom: 2px;
+    }
+    .bar-track {
+      position: relative;
+      background: #f3f4f6;
+      border-radius: 4px;
+      height: 16px;
+      overflow: hidden;
+    }
+    .bar-fill {
+      background: #b91c1c;
+      height: 100%;
+      border-radius: 4px;
+      transition: width 0.2s ease;
+    }
+    .bar-count {
+      position: absolute;
+      right: 6px;
+      top: 0;
+      font-size: 10px;
+      line-height: 16px;
+      color: #111827;
+      font-weight: 600;
+    }
+    .btn-row {
+      display: flex;
+      gap: 8px;
+      margin-top: 16px;
+    }
+    .btn-row button, .btn-row a {
+      flex: 1;
+      padding: 8px;
+      border-radius: 6px;
+      border: 1px solid #d1d5db;
+      background: #f9fafb;
+      cursor: pointer;
+      font-size: 12px;
+      text-align: center;
+      color: #111827;
+      text-decoration: none;
+      display: block;
+      box-sizing: border-box;
+    }
+    #export-btn {
+      background: #111827;
+      color: white;
+      border-color: #111827;
+    }
+    #empty-msg {
+      font-size: 12px;
+      color: #6b7280;
+    }
+  </style>
+</head>
+<body>
+  <h1>🛡️ AEGIS <span id="version-tag"></span></h1>
+  <div style="font-size:11px;color:#9ca3af;margin-bottom:10px;">Last 7 Days</div>
+  <div id="stats"></div>
+  <div id="breakdown"></div>
+  <div class="btn-row">
+    <button id="export-btn">Export CSV</button>
+    <a id="settings-link" href="#">Settings</a>
+  </div>
+  <button id="clear-btn" style="margin-top:8px;width:100%;padding:8px;border-radius:6px;border:1px solid #d1d5db;background:#f9fafb;cursor:pointer;font-size:12px;">Clear log</button>
+  <script src="popup.js"></script>
+</body>
+</html>

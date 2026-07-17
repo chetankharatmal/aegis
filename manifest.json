@@ -1,0 +1,52 @@
+{
+  "manifest_version": 3,
+  "name": "AEGIS - AI Exposure Guard & Interception System",
+  "version": "1.4.1",
+  "description": "AEGIS is browser extention that warns you before sending sensitive/confidential data into ChatGPT, Claude, Gemini, or Copilot, including in uploaded files (text, PDF, and more). Develop by Chetan kharatmal as college project",
+  "permissions": [
+    "storage",
+    "notifications"
+  ],
+  "host_permissions": [
+    "https://chatgpt.com/*",
+    "https://chat.openai.com/*",
+    "https://claude.ai/*",
+    "https://gemini.google.com/*",
+    "https://copilot.microsoft.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://chatgpt.com/*",
+        "https://chat.openai.com/*",
+        "https://claude.ai/*",
+        "https://gemini.google.com/*",
+        "https://copilot.microsoft.com/*"
+      ],
+      "js": [
+        "libs/pdf.js",
+        "libs/mammoth.browser.min.js",
+        "libs/xlsx.full.min.js",
+        "detector.js",
+        "content.js"
+      ],
+      "css": [
+        "overlay.css"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "options_page": "options.html",
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "AEGIS"
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

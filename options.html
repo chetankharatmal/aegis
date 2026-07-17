@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>AEGIS Settings</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      max-width: 560px;
+      margin: 30px auto;
+      color: #111827;
+      padding: 0 20px;
+    }
+    h1 {
+      font-size: 20px;
+      margin-bottom: 4px;
+    }
+    .subtitle {
+      color: #6b7280;
+      font-size: 13px;
+      margin-bottom: 24px;
+    }
+    section {
+      margin-bottom: 28px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #e5e7eb;
+    }
+    h2 {
+      font-size: 15px;
+      margin-bottom: 10px;
+    }
+    .sensitivity-row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+    .sensitivity-btn {
+      flex: 1;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #d1d5db;
+      background: #f9fafb;
+      cursor: pointer;
+      font-size: 13px;
+      text-align: center;
+    }
+    .sensitivity-btn.active {
+      background: #111827;
+      color: white;
+      border-color: #111827;
+    }
+    .sensitivity-desc {
+      font-size: 12px;
+      color: #6b7280;
+    }
+    .toggle-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+      font-size: 14px;
+    }
+    .toggle-row label {
+      cursor: pointer;
+    }
+    input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+    }
+    #allow-list-input-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    #allow-list-input {
+      flex: 1;
+      padding: 8px 10px;
+      border-radius: 6px;
+      border: 1px solid #d1d5db;
+      font-size: 13px;
+    }
+    #allow-list-add-btn {
+      padding: 8px 14px;
+      border-radius: 6px;
+      border: none;
+      background: #111827;
+      color: white;
+      cursor: pointer;
+      font-size: 13px;
+    }
+    #allow-list-items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .allow-list-chip {
+      background: #f3f4f6;
+      border: 1px solid #d1d5db;
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .allow-list-chip button {
+      border: none;
+      background: none;
+      cursor: pointer;
+      color: #9ca3af;
+      font-size: 13px;
+      padding: 0;
+    }
+    #save-status {
+      font-size: 13px;
+      color: #059669;
+      height: 18px;
+    }
+    .hint {
+      font-size: 12px;
+      color: #6b7280;
+      margin-top: 6px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🛡️ AEGIS Settings</h1>
+  <div class="subtitle">Configure detection sensitivity, categories, and allow-listed items.</div>
+
+  <section>
+    <h2>Sensitivity</h2>
+    <div class="sensitivity-row">
+      <div class="sensitivity-btn" data-value="strict">Strict</div>
+      <div class="sensitivity-btn" data-value="balanced">Balanced</div>
+      <div class="sensitivity-btn" data-value="relaxed">Relaxed</div>
+    </div>
+    <div class="sensitivity-desc" id="sensitivity-desc"></div>
+  </section>
+
+  <section>
+    <h2>Detection categories</h2>
+    <div class="toggle-row">
+      <label for="cat-email">Email addresses</label>
+      <input type="checkbox" id="cat-email" data-category="email" />
+    </div>
+    <div class="toggle-row">
+      <label for="cat-phone">Phone numbers</label>
+      <input type="checkbox" id="cat-phone" data-category="phone" />
+    </div>
+    <div class="toggle-row">
+      <label for="cat-financial">Financial (cards, IBAN, crypto wallets)</label>
+      <input type="checkbox" id="cat-financial" data-category="financial" />
+    </div>
+    <div class="toggle-row">
+      <label for="cat-national_id">National ID (SSN, passport, DOB)</label>
+      <input type="checkbox" id="cat-national_id" data-category="national_id" />
+    </div>
+    <div class="toggle-row">
+      <label for="cat-credential">Credentials (API keys, tokens)</label>
+      <input type="checkbox" id="cat-credential" data-category="credential" />
+    </div>
+    <div class="toggle-row">
+      <label for="cat-network">Network (IP addresses)</label>
+      <input type="checkbox" id="cat-network" data-category="network" />
+    </div>
+    <div class="toggle-row">
+      <label for="cat-confidentiality">Confidentiality keywords</label>
+      <input type="checkbox" id="cat-confidentiality" data-category="confidentiality" />
+    </div>
+    <div class="toggle-row">
+      <label for="cat-filename">Sensitive filenames</label>
+      <input type="checkbox" id="cat-filename" data-category="filename" />
+    </div>
+  </section>
+
+  <section>
+    <h2>Allow-list</h2>
+    <div class="hint">
+      Anything containing these terms (e.g. a test domain, a known-safe keyword)
+      will be ignored by detection. Matching is case-insensitive and checks for
+      substring containment.
+    </div>
+    <div id="allow-list-input-row" style="margin-top:10px;">
+      <input type="text" id="allow-list-input" placeholder="e.g. mycompany-test.com" />
+      <button id="allow-list-add-btn">Add</button>
+    </div>
+    <div id="allow-list-items"></div>
+  </section>
+
+  <div id="save-status"></div>
+
+  <script src="options.js"></script>
+</body>
+</html>
