@@ -148,4 +148,34 @@ sample text without requiring a browser environment.
 - `test_detector.js` — standalone tests for detection logic
 - `test-files/` — sample files (synthetic data only) for demonstrating each feature
 
+## ⚠️ Known Limitations
+- Detection is regex/keyword-based rather than context-aware, and is
+  therefore subject to false positives (e.g., long order numbers matching
+  "Generic Long Secret," mitigated by the Relaxed sensitivity setting) and
+  false negatives (sensitive data expressed without a recognizable
+  pattern, such as "the client's home address is 42 Oak Street").
+- Site DOM selectors in `content.js` may break following platform UI
+  updates; this reflects a real-world maintenance challenge relevant to
+  the research findings. Gemini and Copilot selectors, while now verified, warrant closer
+  monitoring given the pace of platform UI changes.
+- Images are not content-scanned (no OCR); detection relies solely on
+  filename heuristics.
+- When a flagged file is removed, the extension clears the file input, but
+  the host site's own UI (e.g., a file preview element) may not always
+  update in sync, reflecting the extension's lack of control over the
+  site's internal JavaScript state.
+- This system addresses only the *input* leak vector, not potential
+  downstream use of data by the AI model itself, including retention in
+  training data or memory.
+- The allow-list uses simple substring matching and cannot express more
+  complex rules, such as restricting a domain to a specific field context.
 
+## 📝 Suggested Next Steps for the Research Paper
+1. Conduct a small-scale user study: have participants use the tool over a
+   one-week period and record warning frequency and the proportion of
+   warnings that were overridden ("sent anyway").
+2. Measure the false positive rate against a sample of approximately 50
+   realistic, non-sensitive prompts at each sensitivity level, to
+   quantify the associated trade-offs.
+3. Use the popup dashboard's CSV export as the primary data source for the
+   paper's risk analysis.

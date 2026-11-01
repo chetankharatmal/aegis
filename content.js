@@ -28,14 +28,12 @@
       sendButtonSelector: 'button[aria-label="Send message"]'
     },
     "gemini.google.com": {
-      // UNVERIFIED — Gemini uses a custom <rich-textarea> element as of
-      // last check; the inner contenteditable div is the actual input.
+     
       inputSelector: 'rich-textarea div[contenteditable="true"]',
       sendButtonSelector: 'button[aria-label="Send message"]'
     },
     "copilot.microsoft.com": {
-      // UNVERIFIED — Copilot's input has used a plain textarea in the past;
-      // confirm the current attribute via DevTools if this doesn't work.
+     
       inputSelector: 'textarea[id="userInput"], textarea[data-testid="chat-input"]',
       sendButtonSelector: 'button[data-testid="submit-button"], button[aria-label="Submit"]'
     }
